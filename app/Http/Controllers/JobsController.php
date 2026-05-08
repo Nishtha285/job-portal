@@ -1,0 +1,113 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Category;
+use App\Models\Job;
+use App\Models\JobApplication;
+use App\Models\JobType;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class JobsController extends Controller
+{
+    // This method will show jobs page
+    public function index(Request $request){
+        $categories = Category::where('status', 1)->get();
+        $job_types = JobType::where('status', 1)->get();
+        $jobs = Job::where('status', 1);
+        // Search using keywords
+        if (!empty($request->keywords)) {
+            $jobs->where(function ($query) use ($request) {
+            $query->where('title', 'like', '%' . $request->keywords . '%')
+                ->orWhere('keywords', 'like', '%' . $request->keywords . '%'); // use grouping query for like with or condition
+            });
+        }
+
+        // Search using location
+        if (!empty($request->location)) {
+            $jobs->where('location', $request->location);
+        }
+
+        // Search using location
+        if (!empty($request->category)) {
+            $jobs->where('category_id', $request->category);
+        }
+
+        // Search using jobType
+        if (!empty($request->job_type)) {
+            $arr = $request->job_type;
+            $arr = explode(',', $request->job_type);
+            $jobs->whereIn('job_type_id', $arr);
+        }
+
+        // Search using Experience
+        if (!empty($request->experience)) {
+            $jobs->where('experience', $request->experience);
+        }
+
+        $jobs->with(['jobType', 'Category']);
+        // Search using sort
+        if(isset($request->sort) && $request->sort == 0){
+            $jobs = $jobs->orderBy('created_at', 'ASC')->paginate(9);
+        }else{
+            $jobs = $jobs->orderBy('created_at', 'DESC')->paginate(9);
+        }
+        return view('front.jobs', ['jobs'=>$jobs, 'categories'=>$categories, 'job_types'=>$job_types]);
+    }
+
+    public function detail($id){
+        $job = Job::where(['id' => $id, 'status' => 1])->with('jobType')->first();
+        //return $job;
+        if($job == null){
+            abort(404);
+        }
+        return view('front.jobdetails', ['job'=>$job]);
+    }
+
+    public function applyJob(Request $request){
+        $jobID = $request->jobID;
+        // If job not found
+        $job = Job::where('id', $jobID)->first();
+        if($job == null){
+            session()->flash('error', 'Job does not exist!');
+
+            return response()->json([
+                'status' => false,
+                'message' => 'Job does not exist!'
+            ]); 
+        }
+
+        // you can not apply your own job
+        $employer_id = $job->user_id;
+        if(Auth::user()->id == $employer_id){
+            session()->flash('error', 'you can not apply your own job!');
+
+            return response()->json([
+                'status' => false,
+                'message' => 'you can not apply your own job!'
+            ]);
+        }
+
+        $application = New JobApplication();
+        $application->job_id = $jobID;
+        $application->user_id = Auth::user()->id;
+        $application->employer_id = $employer_id;
+        $application->applied_date = now();
+        if($application->save()){
+            session()->flash('success', 'you have successfully applied!');
+
+            return response()->json([
+                'status' => true,
+                'message' => 'you have successfully applied!'
+            ]);
+        }else{
+            session()->flash('error', 'Something went wrong!');
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Something went wrong!'
+            ]);
+        }
+    }
+}
