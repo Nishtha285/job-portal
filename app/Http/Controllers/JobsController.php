@@ -69,6 +69,8 @@ class JobsController extends Controller
         $jobID = $request->jobID;
         // If job not found
         $job = Job::where('id', $jobID)->first();
+        $employer_id = $job->user_id;
+        
         if($job == null){
             session()->flash('error', 'Job does not exist!');
 
@@ -78,8 +80,20 @@ class JobsController extends Controller
             ]); 
         }
 
+        // You can not apply twice on a job
+        $job_application_count = JobApplication::where([
+            'user_id' => Auth::user()->id, 
+            'job_id' => $jobID
+        ])->count();
+        session()->flash('error', 'you already applied on this job!');
+        if($job_application_count>0){
+           return response()->json([
+                'status' => false,
+                'message' => 'you already applied on this job!'
+            ]); 
+        }
+
         // you can not apply your own job
-        $employer_id = $job->user_id;
         if(Auth::user()->id == $employer_id){
             session()->flash('error', 'you can not apply your own job!');
 
@@ -105,7 +119,7 @@ class JobsController extends Controller
             session()->flash('error', 'Something went wrong!');
 
             return response()->json([
-                'status' => true,
+                'status' => false,
                 'message' => 'Something went wrong!'
             ]);
         }

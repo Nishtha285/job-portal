@@ -18,6 +18,11 @@
         <div class="container job_details_area">
             <div class="row pb-5">
                 <div class="col-md-8">
+                    @if(Session::has('success'))
+                        <x-alert type="success" message="{{ session('success') }}"/>
+                    @elseif(Session::has('error'))
+                        <x-alert type="danger" message="{{ session('error') }}"/>   
+                    @endif 
                     <div class="card shadow border-0">
                         <div class="job_details_header">
                             <div class="single_jobs white-bg d-flex justify-content-between">
@@ -116,11 +121,14 @@
                     url : '{{ route("applyJob") }}',
                     type : 'post',
                     data : {jobID:id},
+                    dataType : 'json',
                     success: function(response){
                         console.log(response);
-                        if(response.status == false){
-                            window.location.reload();
-                            //window.location.href = '{{ route("account.myJobs")}}';
+                        if(response.status == true){
+                            window.location.href="{{ url()->current() }}"
+                        }else{
+                            alert(response.message);
+                            window.location.href="{{ url()->current() }}"
                         }
                     }
                 });
