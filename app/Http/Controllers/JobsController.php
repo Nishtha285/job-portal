@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\JobNotificationEmail;
 use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobApplication;
 use App\Models\JobType;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class JobsController extends Controller
 {
@@ -70,7 +73,7 @@ class JobsController extends Controller
         // If job not found
         $job = Job::where('id', $jobID)->first();
         $employer_id = $job->user_id;
-        
+
         if($job == null){
             session()->flash('error', 'Job does not exist!');
 
@@ -109,6 +112,17 @@ class JobsController extends Controller
         $application->employer_id = $employer_id;
         $application->applied_date = now();
         if($application->save()){
+            // Send Notification Email to Employer
+            $employer = User::where('id', $employer_id)->first();
+            $mailData = [
+                'employer' => $employer,
+                'user' => Auth::user(),
+                'job' => $job,
+            ];
+            return $mailData;
+            $employer_email = $employer->email;
+            Mail::to($employer_email)->send(new JobNotificationEmail($mailData));
+
             session()->flash('success', 'you have successfully applied!');
 
             return response()->json([

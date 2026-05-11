@@ -125,10 +125,10 @@
                     success: function(response){
                         console.log(response);
                         if(response.status == true){
-                            window.location.href="{{ url()->current() }}"
+                            //window.location.href="{{ url()->current() }}"
                         }else{
                             alert(response.message);
-                            window.location.href="{{ url()->current() }}"
+                            //window.location.href="{{ url()->current() }}"
                         }
                     }
                 });
