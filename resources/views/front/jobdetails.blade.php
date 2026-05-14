@@ -29,7 +29,7 @@
                                 <div class="jobs_left d-flex align-items-center">
                                     <div class="jobs_conetent">
                                         <a href="#">
-                                            <h4>{{ $job->title }}</h4>
+                                            <h4>{{ $job->title }} (Employer - {{ $job->user->name }})</h4>
                                         </a>
                                         <div class="links_locat d-flex align-items-center">
                                             <div class="location">
@@ -125,10 +125,10 @@
                     success: function(response){
                         console.log(response);
                         if(response.status == true){
-                            //window.location.href="{{ url()->current() }}"
+                            window.location.href="{{ url()->current() }}"
                         }else{
                             alert(response.message);
-                            //window.location.href="{{ url()->current() }}"
+                            window.location.href="{{ url()->current() }}"
                         }
                     }
                 });

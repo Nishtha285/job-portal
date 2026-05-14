@@ -60,7 +60,7 @@ class JobsController extends Controller
     }
 
     public function detail($id){
-        $job = Job::where(['id' => $id, 'status' => 1])->with('jobType')->first();
+        $job = Job::where(['id' => $id, 'status' => 1])->with(['jobType', 'user'])->first();
         //return $job;
         if($job == null){
             abort(404);
@@ -119,7 +119,6 @@ class JobsController extends Controller
                 'user' => Auth::user(),
                 'job' => $job,
             ];
-            return $mailData;
             $employer_email = $employer->email;
             Mail::to($employer_email)->send(new JobNotificationEmail($mailData));
 
@@ -138,4 +137,5 @@ class JobsController extends Controller
             ]);
         }
     }
+
 }
