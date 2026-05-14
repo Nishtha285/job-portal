@@ -39,8 +39,8 @@ Home Page
                     <select name="category" id="category" class="form-control">
                         <option value="">Select a Category</option>
                         @if($newCategories->isNotEmpty())
-                            @foreach($newCategories as $newCategory)
-                                <option value="{{ $newCategory->id }}">{{ $newCategory->name }}</option>
+                            @foreach($newCategories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         @endif
                     </select>
@@ -65,7 +65,7 @@ Home Page
                 @foreach($categories as $category)
                     <div class="col-lg-4 col-xl-3 col-md-6">
                         <div class="single_catagory">
-                            <a href="jobs.html"><h4 class="pb-2">{{ $category->name }}</h4></a>
+                            <a href="{{ route('jobs').'?category='. $category->id }}"><h4 class="pb-2">{{ $category->name }}</h4></a>
                             <p class="mb-0"> 
                                 <span>{{ $category->job_vacancy->count() }}</span> Available position
                             </p>

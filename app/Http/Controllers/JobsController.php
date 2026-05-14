@@ -88,8 +88,9 @@ class JobsController extends Controller
             'user_id' => Auth::user()->id, 
             'job_id' => $jobID
         ])->count();
-        session()->flash('error', 'you already applied on this job!');
+        
         if($job_application_count>0){
+           session()->flash('error', 'you already applied on this job!');
            return response()->json([
                 'status' => false,
                 'message' => 'you already applied on this job!'
@@ -135,6 +136,15 @@ class JobsController extends Controller
                 'status' => false,
                 'message' => 'Something went wrong!'
             ]);
+        }
+    }
+
+    public function saveJob(Request $request){
+        $job_id = $request->jobID;
+        $job = Job::where(['id' => $job_id, 'status' => 1])->first();
+        return $job;
+        if($job == null){
+            abort(404);
         }
     }
 

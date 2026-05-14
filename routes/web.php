@@ -10,6 +10,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/jobs', [JobsController::class, 'index'])->name('jobs');
 Route::get('/jobs/detail/{jobID}', [JobsController::class, 'detail'])->name('jobDetail');
 Route::post('/apply-job', [JobsController::class, 'applyJob'])->name('applyJob');
+Route::post('/save-job', [JobsController::class, 'saveJob'])->name('saveJob');
 Route::group(['prefix' => 'account'], function(){
     Route::middleware('logedIn')->group(function () {
         Route::get('/login', [AccountController::class, 'login'])->name('account.login');
