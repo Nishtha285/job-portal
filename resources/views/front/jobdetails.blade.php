@@ -19,10 +19,16 @@
             <div class="row pb-5">
                 <div class="col-md-8">
                     @if(Session::has('success'))
-                        <x-alert type="success" message="{{ session('success') }}"/>
-                    @elseif(Session::has('error'))
-                        <x-alert type="danger" message="{{ session('error') }}"/>   
-                    @endif 
+                        <div class="alert alert-success">
+                            {{ Session::get('success') }}
+                        </div>
+                    @endif
+
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('error') }}
+                        </div>
+                    @endif
                     <div class="card shadow border-0">
                         <div class="job_details_header">
                             <div class="single_jobs white-bg d-flex justify-content-between">
@@ -42,8 +48,8 @@
                                     </div>
                                 </div>
                                 <div class="jobs_right">
-                                    <div class="apply_now">
-                                        <a class="heart_mark" href="#"> <i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                    <div class="apply_now {{($jobSavedCount > 0) ? 'saved-job' : '' }}">
+                                        <a class="heart_mark" href="javascript:void(0)" onClick="saveJob({{ $job->id }})"> <i class="fa fa-heart-o" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -70,12 +76,12 @@
                                 @if(Auth::check())
                                     <a href="#" onClick="saveJob({{ $job->id }})" class="btn btn-secondary">Save</a>
                                 @else 
-                                    <a href="javascript:void()" class="btn btn-primary disabled">Login to Apply</a>
+                                    <a href="javascript:void(0)" class="btn btn-primary disabled">Login to Apply</a>
                                 @endif 
                                 @if(Auth::check())
                                     <a href="#" onClick="applyJob({{ $job->id }})" class="btn btn-primary">Apply</a>
                                 @else 
-                                    <a href="javascript:void()" class="btn btn-primary disabled">Login to Apply</a>
+                                    <a href="javascript:void(0)" class="btn btn-primary disabled">Login to Apply</a>
                                 @endif       
                             </div>
                         </div>
@@ -139,7 +145,7 @@
             }    
         }
 
-        function saveJob($id){
+        function saveJob(id){
             if(confirm("Are you sure you want save this job?")){
                 $.ajax({
                     url : '{{ route("saveJob") }}',
@@ -154,6 +160,10 @@
                             alert(response.message);
                             window.location.href="{{ url()->current() }}"
                         }
+                    },
+                    error: function(xhr){
+                        alert('error');
+                        console.log("Error:", xhr.responseJSON);
                     }
                 });
             }
