@@ -47,11 +47,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="jobs_right">
-                                    <div class="apply_now {{($jobSavedCount > 0) ? 'saved-job' : '' }}">
-                                        <a class="heart_mark" href="javascript:void(0)" onClick="saveJob({{ $job->id }})"> <i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                @if(Gate::allows('isLogin'))
+                                    <div class="jobs_right">
+                                        <div class="apply_now {{($jobSavedCount > 0) ? 'saved-job' : '' }}">
+                                            <a class="heart_mark" href="javascript:void(0)" onClick="saveJob({{ $job->id }})"> <i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif    
                             </div>
                         </div>
                         <div class="descript_wrap white-bg">
@@ -76,7 +78,7 @@
                                 @if(Auth::check())
                                     <a href="#" onClick="saveJob({{ $job->id }})" class="btn btn-secondary">Save</a>
                                 @else 
-                                    <a href="javascript:void(0)" class="btn btn-primary disabled">Login to Apply</a>
+                                    <a href="javascript:void(0)" class="btn btn-primary disabled">Login to Save</a>
                                 @endif 
                                 @if(Auth::check())
                                     <a href="#" onClick="applyJob({{ $job->id }})" class="btn btn-primary">Apply</a>

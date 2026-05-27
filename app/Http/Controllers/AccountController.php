@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Job;
 use App\Models\JobApplication;
 use App\Models\JobType;
+use App\Models\SavedJob;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -326,6 +327,14 @@ class AccountController extends Controller
             abort(404);
         }
         return view('front.account.job.appliedjob', ['jobApplications'=>$jobApplications]);
+    }
+
+    public function savedJobs(){
+        $savedJobs = SavedJob::where('user_id', Auth::user()->id)->with(['job', 'job.jobType', 'job.applications'])->get();
+        if($savedJobs == null){
+            abort(404);
+        }
+        return view('front.account.job.savedjob', ['savedJobs'=>$savedJobs]);
     }
 
     public function logout(){

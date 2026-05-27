@@ -11,6 +11,7 @@ use App\Models\SavedJob;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 
 class JobsController extends Controller
@@ -65,8 +66,12 @@ class JobsController extends Controller
         if($job == null){
             abort(404);
         }
-
-        $jobSavedCount = SavedJob::where(['job_id' => $id, 'user_id' => Auth::user()->id])->count();
+        
+        $jobSavedCount = 0;
+        if(Auth::check()){
+            $jobSavedCount = SavedJob::where(['job_id' => $id, 'user_id' => Auth::user()->id])->count();
+        }
+        
 
         return view('front.jobdetails', ['job' => $job, 'jobSavedCount' => $jobSavedCount]);
     }
