@@ -1,0 +1,115 @@
+ /* ACCESSIBILITY TOOLS */
+
+        .accessibility-tools {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+        }
+
+        .accessibility-tools button {
+
+            border: none;
+
+            background: transparent;
+
+            color: #fff;
+
+            font-size: 18px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+            padding: 2px 5px;
+        }
+
+        .accessibility-tools button:hover {
+
+            color: #EB292C;
+        }
+
+        .skip-content {
+
+            color: #fff;
+
+            font-size: 14px;
+
+            text-decoration: none;
+
+            margin-left: 10px;
+        }
+
+        .skip-content:hover {
+
+            color: #EB292C;
+        }
+
+        /* HIGH CONTRAST */
+
+        body.high-contrast {
+
+            background: #000 !important;
+
+            color: #fff !important;
+        }
+
+        body.high-contrast section,
+        body.high-contrast div,
+        body.high-contrast footer,
+        body.high-contrast header {
+
+            background: #000 !important;
+
+            color: #fff !important;
+        }
+
+        body.high-contrast p,
+        body.high-contrast h1,
+        body.high-contrast h2,
+        body.high-contrast h3,
+        body.high-contrast h4,
+        body.high-contrast h5,
+        body.high-contrast a,
+        body.high-contrast li {
+
+            color: #fff !important;
+        }
+
+        #stop-reader-btn {
+            color: #ff4d4d;
+        }
+
+        #stop-reader-btn:hover {
+            color: #fff;
+            background: #ff4d4d;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 991px) {
+
+            .accessibility-tools {
+
+                justify-content: center;
+
+                width: 100%;
+            }
+
+            .accessibility-tools button {
+
+                font-size: 14px;
+            }
+
+            .skip-content {
+
+                font-size: 13px;
+            }
+        }
+        /* Accessibility Bar end */

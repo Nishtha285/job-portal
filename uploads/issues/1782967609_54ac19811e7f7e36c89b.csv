@@ -1,0 +1,990 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jul 01, 2026 at 01:40 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `aiforera_local`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity_logs`
+--
+
+CREATE TABLE `activity_logs` (
+  `id` bigint(20) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `unit_id` int(11) DEFAULT NULL,
+  `action` varchar(100) NOT NULL,
+  `module` varchar(50) NOT NULL,
+  `description` text NOT NULL,
+  `ip_address` varchar(45) NOT NULL,
+  `user_agent` varchar(255) DEFAULT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`payload`)),
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `activity_logs`
+--
+
+INSERT INTO `activity_logs` (`id`, `user_id`, `unit_id`, `action`, `module`, `description`, `ip_address`, `user_agent`, `payload`, `created_at`) VALUES
+(1, NULL, NULL, 'LOGIN_FAILED', 'AUTH', 'Failed login attempt on email: ', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 16:20:55'),
+(2, NULL, NULL, 'LOGIN_FAILED', 'AUTH', 'Failed login attempt on email: ', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 16:21:56'),
+(3, NULL, NULL, 'LOGIN_FAILED', 'AUTH', 'Failed login attempt on email: ', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 16:33:40'),
+(4, NULL, NULL, 'LOGIN_FAILED', 'AUTH', 'Failed login attempt on email: admin@aiforera.com', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 16:36:31'),
+(5, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 16:43:38'),
+(6, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 16:55:21'),
+(7, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 17:10:32'),
+(8, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 17:10:38'),
+(9, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 17:10:59'),
+(10, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 17:47:07'),
+(11, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 17:48:28'),
+(12, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 17:54:53'),
+(13, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 17:54:56'),
+(14, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 18:04:14'),
+(15, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 18:04:33'),
+(16, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 18:44:06'),
+(17, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 18:50:45'),
+(18, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '122.161.49.28', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 18:50:47'),
+(19, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '2401:4900:1c5a:243a:c8b4:1f84:d659:be50', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 19:26:06'),
+(20, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '2401:4900:1c5a:243a:c8b4:1f84:d659:be50', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-29 19:26:09'),
+(21, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '2401:4900:1c5a:243a:c8b4:1f84:d659:be50', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.122.1 Chrome/142.0.7444.265 Electron/39.8.8 Safari/537.36', NULL, '2026-05-30 06:16:57'),
+(22, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '2401:4900:1c5a:243a:c8b4:1f84:d659:be50', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-30 06:24:37'),
+(23, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '2401:4900:1c5a:243a:c8b4:1f84:d659:be50', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-30 06:39:41'),
+(24, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '2401:4900:1c5a:243a:c8b4:1f84:d659:be50', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-30 06:47:39'),
+(25, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '2401:4900:1c5a:243a:c8b4:1f84:d659:be50', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-30 06:47:40'),
+(26, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '2401:4900:1c5a:243a:c8b4:1f84:d659:be50', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-30 06:50:59'),
+(27, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '2401:4900:1c5a:243a:c8b4:1f84:d659:be50', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-30 06:53:09'),
+(28, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '2401:4900:1c5a:243a:c8b4:1f84:d659:be50', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.122.1 Chrome/142.0.7444.265 Electron/39.8.8 Safari/537.36', NULL, '2026-05-30 06:54:29'),
+(29, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '2401:4900:1c5a:243a:c8b4:1f84:d659:be50', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.122.1 Chrome/142.0.7444.265 Electron/39.8.8 Safari/537.36', NULL, '2026-05-30 07:00:24'),
+(30, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '2401:4900:1c5a:243a:c8b4:1f84:d659:be50', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.122.1 Chrome/142.0.7444.265 Electron/39.8.8 Safari/537.36', NULL, '2026-05-30 07:00:26'),
+(31, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-30 13:02:03'),
+(32, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-30 13:02:08'),
+(33, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-30 13:28:07'),
+(34, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-30 15:25:14'),
+(35, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-30 16:48:14'),
+(36, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-30 20:24:58'),
+(37, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-30 20:25:13'),
+(38, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-05-30 20:32:38'),
+(39, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-06-01 12:03:48'),
+(40, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-06-01 12:03:55'),
+(41, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-06-01 12:04:00'),
+(42, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-06-01 12:04:06'),
+(43, NULL, NULL, 'LOGIN_FAILED', 'AUTH', 'Failed login attempt on email: admin@aiforera.com', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-06-01 16:51:52'),
+(44, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-06-01 16:53:23'),
+(45, 1, 1, 'LOGOUT', 'AUTH', 'User logged out safely.', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-06-01 16:55:29'),
+(46, 1, 1, 'LOGIN_SUCCESS', 'AUTH', 'User Harpal Sindhu logged in successfully.', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36', NULL, '2026-06-02 09:53:14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `act_rules`
+--
+
+CREATE TABLE `act_rules` (
+  `id` int(11) NOT NULL,
+  `fileID` varchar(255) DEFAULT NULL,
+  `title` varchar(250) NOT NULL,
+  `publishDate` date NOT NULL,
+  `createdBy` int(11) NOT NULL,
+  `updatedBy` int(11) DEFAULT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `flag` int(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `act_rules`
+--
+
+INSERT INTO `act_rules` (`id`, `fileID`, `title`, `publishDate`, `createdBy`, `updatedBy`, `createdAt`, `updatedAt`, `flag`) VALUES
+(1, '31', 'Andhra Pardesh RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(2, '32', 'Assam RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(3, '33', 'Bihar RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(4, '34', 'Chattisgarh RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(5, '35', 'Goa RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(6, '36', 'Gujarat RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(7, '37', 'Haryana Gurugram RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(8, '38', 'Himachal Pardesh RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(9, '39', 'Jharkand RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(10, '40', 'Karnataka RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', '2026-06-11 10:48:33', 1),
+(11, '1', 'Kerela RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(12, '42', 'Madhya Pradesh RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(13, '43', 'Maharashtra RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(14, '44', 'Manipur RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(15, '45', 'Meghalya RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(16, '46', 'Mizoram RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(17, '47', 'Odhisa RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(18, '48', 'Punjab RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(19, '49', 'Rajasthan RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(20, '50', 'Sikkim RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(21, '51', 'Tamil Nadu RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(22, '52', 'Telanagana RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(23, '53', 'Tripura RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(24, '54', 'Uttar Pradesh RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(25, '55', 'Uttarakhand Rera Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1),
+(26, '56', 'West Bengal RERA Rules', '2026-06-11', 1, NULL, '2026-06-11 09:00:06', NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `message` longtext NOT NULL,
+  `CreatedAt` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `name`, `email`, `phone`, `subject`, `message`, `CreatedAt`) VALUES
+(1, 'Pushpendra', 'pawansharma3215@gmail.com', '9643108599', 'Subject', 'Type Message..', '2026-06-15 05:14:18'),
+(2, 'pawan sharm', 'pawansharma3215@gmail.com', '9643108599', 'Subject', 'ggggg', '2026-06-25 10:27:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `file_permissions`
+--
+
+CREATE TABLE `file_permissions` (
+  `id` int(11) NOT NULL,
+  `file_id` int(11) NOT NULL,
+  `grant_type` enum('user','role') NOT NULL,
+  `granted_to` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `version` varchar(255) NOT NULL,
+  `class` varchar(255) NOT NULL,
+  `group` varchar(255) NOT NULL,
+  `namespace` varchar(255) NOT NULL,
+  `time` int(11) NOT NULL,
+  `batch` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`, `batch`) VALUES
+(1, '2026-05-30-000001', 'App\\Database\\Migrations\\AddUserPermissionsTable', 'default', 'App', 1780123213, 1),
+(2, '2026-05-30-000002', 'App\\Database\\Migrations\\AddFileThumbnailToUploadedFiles', 'default', 'App', 1780139923, 2),
+(4, '2026-05-30-000003', 'App\\Database\\Migrations\\CreateSiteSettingsTable', 'default', 'App', 1780153482, 3),
+(5, '2026-06-01-090509', 'App\\Database\\Migrations\\CreatePublicationsTable', 'default', 'App', 1780374230, 4),
+(6, '2026-06-03-000001', 'App\\Database\\Migrations\\AddDesignationToUsersTable', 'default', 'App', 1780894426, 5),
+(7, '2026-06-08-042418', 'App\\Database\\Migrations\\CreateResourceStates', 'default', 'App', 1780894426, 5),
+(11, '2026-06-08-063120', 'App\\Database\\Migrations\\CreateResourcesStateWise', 'default', 'App', 1780902849, 6),
+(12, '2026-06-11-055334', 'App\\Database\\Migrations\\CreateActRulesTable', 'default', 'App', 1781158025, 7),
+(13, '2026-06-12-085848', 'App\\Database\\Migrations\\CreateContactTable', 'default', 'App', 1781255035, 8),
+(14, '2026-07-01-044440', 'App\\Database\\Migrations\\CreateReportAnIssueTable', 'default', 'App', 1782882042, 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` int(11) NOT NULL,
+  `permission_key` varchar(100) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `permission_key`, `description`, `created_at`) VALUES
+(1, 'units_view', 'Permission to view organizational units profile and dashboards.', '2026-05-29 16:29:05'),
+(2, 'units_add', 'Permission to instantiate and provision a new organizational unit.', '2026-05-29 16:29:05'),
+(3, 'units_edit', 'Permission to update configuration parameters of an existing unit.', '2026-05-29 16:29:05'),
+(4, 'units_delete', 'Permission to archive or terminate an active organizational unit.', '2026-05-29 16:29:05'),
+(5, 'dashboard_view', 'View Dashboard', '2026-05-29 16:57:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `publications`
+--
+
+CREATE TABLE `publications` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `fileID` varchar(255) DEFAULT NULL,
+  `Title` varchar(255) NOT NULL,
+  `page` varchar(20) DEFAULT '',
+  `category` varchar(100) DEFAULT NULL,
+  `publishDate` date DEFAULT NULL,
+  `createdBy` int(11) UNSIGNED NOT NULL,
+  `CreatedAt` timestamp NULL DEFAULT current_timestamp(),
+  `updatedBy` int(10) DEFAULT NULL,
+  `updatedAt` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `flag` int(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `publications`
+--
+
+INSERT INTO `publications` (`id`, `fileID`, `Title`, `page`, `category`, `publishDate`, `createdBy`, `CreatedAt`, `updatedBy`, `updatedAt`, `flag`) VALUES
+(1, '1', 'Journals 1', 'journels', 'Journals', '2026-06-01', 1, '2026-06-01 09:16:35', NULL, '2026-06-16 11:29:41', 1),
+(2, '2', 'Journal 2', 'journels', 'Journals', '2026-04-20', 1, '2026-04-19 18:30:00', NULL, '2026-06-01 10:04:01', 1),
+(3, '3', 'Journal 3', 'journels', 'Journals', '2026-03-15', 1, '2026-03-14 18:30:00', NULL, '2026-06-01 10:04:03', 1),
+(4, '4', 'Journal 4', 'journels', 'Journals', '2026-02-10', 1, '2026-02-09 18:30:00', NULL, '2026-06-01 10:04:05', 1),
+(5, '5', 'Journal 5', 'journels', 'Journals', '2026-01-05', 1, '2026-01-04 18:30:00', NULL, '2026-06-01 10:04:06', 1),
+(6, '6', 'Judgement 1', 'judgements', 'Judgements', '2026-05-30', 1, '2026-05-29 18:30:00', NULL, '2026-06-01 10:04:08', 1),
+(7, '7', 'Judgement 2', 'judgements', 'Judgements', '2026-04-20', 1, '2026-04-19 18:30:00', NULL, '2026-06-01 10:04:10', 1),
+(8, '8', 'Judgement 3', 'judgements', 'Judgements', '2026-03-15', 1, '2026-03-14 18:30:00', NULL, '2026-06-01 10:04:16', 1),
+(9, '9', 'Judgement 4', 'judgements', 'Judgements', '2026-02-10', 1, '2026-02-09 18:30:00', NULL, '2026-06-01 10:04:18', 1),
+(10, '10', 'Judgement 5', 'judgements', 'Judgements', '2026-01-05', 1, '2026-01-04 18:30:00', NULL, '2026-06-01 10:04:21', 1),
+(11, '11', 'RERA Order 1', 'rera_orders', 'RERA Orders', '2026-05-30', 1, '2026-05-29 18:30:00', NULL, '2026-06-01 10:04:22', 1),
+(12, '12', 'RERA Order 2', 'rera_orders', 'RERA Orders', '2026-04-20', 1, '2026-04-19 18:30:00', NULL, '2026-06-01 10:04:24', 1),
+(13, '13', 'RERA Order 3', 'rera_orders', 'RERA Orders', '2026-03-15', 1, '2026-03-14 18:30:00', NULL, '2026-06-01 10:04:31', 1),
+(14, '14', 'RERA Order 4', 'rera_orders', 'RERA Orders', '2026-02-10', 1, '2026-02-09 18:30:00', NULL, '2026-06-01 10:04:34', 1),
+(15, '15', 'RERA Order 5', 'rera_orders', 'RERA Orders', '2026-01-05', 1, '2026-01-04 18:30:00', NULL, '2026-06-01 10:04:36', 1),
+(16, '16', 'Innovation 1', 'innovations', 'Regulatory Innovations', '2026-05-30', 1, '2026-05-29 18:30:00', NULL, '2026-06-01 10:04:38', 1),
+(17, '17', 'Innovation 2', 'innovations', 'Regulatory Innovations', '2026-04-20', 1, '2026-04-19 18:30:00', NULL, '2026-06-01 10:04:40', 1),
+(18, '18', 'Innovation 3', 'innovations', 'Regulatory Innovations', '2026-03-15', 1, '2026-03-14 18:30:00', NULL, '2026-06-01 10:04:42', 1),
+(19, '19', 'Innovation 4', 'innovations', 'Regulatory Innovations', '2026-02-10', 1, '2026-02-09 18:30:00', NULL, '2026-06-01 10:04:44', 1),
+(20, '20', 'Innovation 5', 'innovations', 'Regulatory Innovations', '2026-01-05', 1, '2026-01-04 18:30:00', NULL, '2026-06-01 10:04:48', 1),
+(21, '21', 'Annual Report 24-25', 'circulars_reports', 'Reports', '2026-05-30', 1, '2026-05-29 18:30:00', NULL, '2026-06-01 10:04:50', 1),
+(22, '22', 'Annual Report 23-24', 'circulars_reports', 'Reports', '2026-04-20', 1, '2026-04-19 18:30:00', NULL, '2026-06-01 10:04:51', 1),
+(23, '23', 'Annual Report 22-23', 'circulars_reports', 'Reports', '2026-03-15', 1, '2026-03-14 18:30:00', NULL, '2026-06-01 10:04:53', 1),
+(24, '24', 'Annual Report 21-22', 'circulars_reports', 'Reports', '2026-02-10', 1, '2026-02-09 18:30:00', NULL, '2026-06-01 10:04:54', 1),
+(25, '25', 'Order 12345', 'circulars_reports', 'Order', '2026-01-05', 1, '2026-01-04 18:30:00', NULL, '2026-06-01 10:04:56', 1),
+(26, '26', 'Best Practices by HARERAGGM', 'best_practices', 'Best Practices', '2026-05-30', 1, '2026-05-29 18:30:00', NULL, '2026-06-01 10:04:58', 1),
+(27, '27', 'Best Practices', 'best_practices', 'Best Practices', '2026-04-20', 1, '2026-04-19 18:30:00', NULL, '2026-06-01 10:05:01', 1),
+(28, '28', 'Best Practices', 'best_practices', 'Best Practices', '2026-03-15', 1, '2026-03-14 18:30:00', NULL, '2026-06-01 10:05:03', 1),
+(29, '29', 'Best Practices', 'best_practices', 'Best Practices', '2026-02-10', 1, '2026-02-09 18:30:00', NULL, '2026-06-01 10:05:05', 1),
+(30, '30', 'Best Practices', 'best_practices', 'Best Practices', '2026-01-05', 1, '2026-01-04 18:30:00', NULL, '2026-06-01 10:05:08', 1),
+(31, '57', 'Rera Notice', 'public_notices', 'Public Notice', '2026-06-22', 1, '2026-06-22 11:53:46', NULL, '2026-06-22 11:59:16', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `report_an_issue`
+--
+
+CREATE TABLE `report_an_issue` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `issue_type` varchar(100) NOT NULL,
+  `state` varchar(100) DEFAULT NULL,
+  `page_url` varchar(255) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `subject` varchar(100) NOT NULL,
+  `message` longtext NOT NULL,
+  `attachment` varchar(255) DEFAULT NULL,
+  `token` varchar(200) NOT NULL,
+  `flag` tinyint(1) NOT NULL DEFAULT 1,
+  `CreatedAt` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `report_an_issue`
+--
+
+INSERT INTO `report_an_issue` (`id`, `name`, `email`, `issue_type`, `state`, `page_url`, `phone`, `subject`, `message`, `attachment`, `token`, `flag`, `CreatedAt`) VALUES
+(1, 'pawan sharm', 'pawansharma3215@gmail.com', 'Website Error', 'Haryana', 'https://hareraggm.gov.in/developments/hareraggm-dbi/projects/list', '9643108599', 'Subject', 'Describe the issue details', NULL, 'AIF-20260701-018051', 1, '2026-07-01 10:30:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `resources_state_wise`
+--
+
+CREATE TABLE `resources_state_wise` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `fileID` varchar(255) DEFAULT NULL,
+  `stateID` int(11) NOT NULL,
+  `Title` varchar(255) NOT NULL,
+  `page` varchar(20) DEFAULT NULL,
+  `category` varchar(100) DEFAULT NULL,
+  `publishDate` date NOT NULL,
+  `createdBy` int(11) UNSIGNED NOT NULL,
+  `CreatedAt` timestamp NULL DEFAULT current_timestamp(),
+  `flag` int(1) NOT NULL DEFAULT 1,
+  `updatedAt` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `resources_state_wise`
+--
+
+INSERT INTO `resources_state_wise` (`id`, `fileID`, `stateID`, `Title`, `page`, `category`, `publishDate`, `createdBy`, `CreatedAt`, `flag`, `updatedAt`) VALUES
+(1, '1', 1, 'Journal1', 'journels', 'Journals', '2026-06-08', 1, '2026-06-08 07:14:11', 1, NULL),
+(2, '2', 3, 'Journal2', 'journels', 'Journals', '2026-06-08', 1, '2026-06-08 07:14:11', 1, '2026-06-08 10:26:06'),
+(3, '3', 1, 'Journal3', 'journels', 'Journals', '2026-06-08', 1, '2026-06-08 07:14:11', 1, NULL),
+(4, '4', 2, 'Judgement 1', 'judgements', 'Judgements', '2026-06-08', 1, '2026-06-08 07:14:11', 1, NULL),
+(5, '5', 2, 'Judgement 2', 'judgements', 'Judgements', '2026-06-08', 1, '2026-06-08 07:14:11', 1, NULL),
+(6, '6', 3, 'RERA Order 1', 'rera_orders', 'RERA Orders', '2026-06-08', 1, '2026-06-08 07:14:11', 1, NULL),
+(7, '7', 4, 'Innovation 1', 'innovations', 'Regulatory Innovations', '2026-06-08', 1, '2026-06-08 07:14:11', 1, NULL),
+(8, '8', 4, 'Innovation 2', 'innovations', 'Regulatory Innovations', '2026-06-08', 1, '2026-06-08 07:14:11', 1, NULL),
+(9, '9', 2, 'Innovation 3', 'innovations', 'Regulatory Innovations', '2026-06-08', 1, '2026-06-08 07:14:11', 1, '2026-06-08 10:25:40'),
+(10, '10', 5, 'Annual Report 24-25', 'circulars_reports', 'Reports', '2026-06-08', 1, '2026-06-08 07:14:11', 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `resource_states`
+--
+
+CREATE TABLE `resource_states` (
+  `id` int(11) NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `description` longtext NOT NULL,
+  `page` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `state_name` varchar(100) NOT NULL,
+  `image` varchar(250) NOT NULL,
+  `publishDate` date NOT NULL,
+  `createdBy` int(11) NOT NULL,
+  `updatedBy` int(11) DEFAULT NULL,
+  `flag` int(1) NOT NULL DEFAULT 1,
+  `CreatedAt` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `resource_states`
+--
+
+INSERT INTO `resource_states` (`id`, `title`, `description`, `page`, `name`, `state_name`, `image`, `publishDate`, `createdBy`, `updatedBy`, `flag`, `CreatedAt`, `updatedAt`) VALUES
+(1, 'ANDHRA PRADESH', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'andhra_pradesh', 'Pushpendra Sharma, IAS', 'ANDHRA PRADESH', 'website-assets/images/team/siva-reddy-andhra-pradesh-rera.jpg', '2026-06-08', 1, NULL, 1, '2026-06-08 04:56:21', '2026-06-24 07:05:05'),
+(2, 'ANDAMAN & NICOBAR', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'andaman_nicobar', 'Pushpendra Sharma, IAS', 'Andaman & Nicobar', 'website-assets/images/team/Rakesh-Singh.jpg', '2026-06-08', 1, NULL, 1, '2026-06-08 04:56:21', '2026-06-24 07:05:15'),
+(3, 'ASSAM', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'assam', 'Pushpendra Sharma, IAS', 'Assam', 'website-assets/images/team/Paban-Kumar-Borthakur-Assam-RERA.jpg', '2026-06-08', 1, NULL, 1, '2026-06-08 04:56:21', '2026-06-24 07:05:24'),
+(4, 'BIHAR', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'bihar', 'Vivek Singh, IAS(Retd)', 'Bihar', 'website-assets/images/team/Vivek-Singh-Bihar-RERA.png', '2026-06-08', 1, NULL, 1, '2026-06-08 04:56:21', '2026-06-24 07:05:30'),
+(5, 'CHHATTISGARH', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'chhattisgarh ', 'Ramesh Sharma, IAS(Retd)', 'Chhattisgarh ', 'website-assets/images/team/Sanjay-Shukla-Chattisgarh-RERA.png', '2026-06-08', 1, NULL, 1, '2026-06-08 04:56:21', '2026-06-24 07:05:43'),
+(6, 'DADRA AND NAGAR HAVELI AND DAMAN AND DIU', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'dadra_nagar', 'Pushpendra Sharma, IAS', 'Dadra and Nagar', 'website-assets/images/team/Rakesh-Singh.jpg', '2026-06-08', 1, NULL, 1, '2026-06-08 04:56:21', '2026-06-24 07:05:49'),
+(7, 'Delhi ', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'delhi', 'Anand Kumar, IAS', 'Delhi', 'website-assets/images/team/anand-kumar-delhi-rera.png', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(8, 'GOA', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'goa', 'Dharamendra Sharma, IAS', 'Goa', 'website-assets/images/team/dharamendra-sharma-goa-rera.jpg', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(9, 'GUJRAT', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'gujarat', 'Anita Karwal, IAS', 'Gujarat', 'website-assets/images/team/Anita-Karwal-Gujrat-RERA.png ', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(10, 'HARYANA', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'haryana', 'Parneet Sachdev, IAS', 'Haryana', 'website-assets/images/team/Parneet-Sachdev-Haryana-Panchkula-RERA.jpg', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(11, 'HIMACHAL PRADESH', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'himachal_pradesh', 'R-D Dhiman, IAS', 'Himachal Pradesh', 'website-assets/images/team/R-D-Dhiman.jpg', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(12, 'JHARKHAND', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'jharkhand', 'Pushpendra Sharma, IAS', 'Jharkhand', 'website-assets/images/team/Rakesh-Singh.jpg', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(13, 'KARNATAKA', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'karnataka', 'Rakesh Singh, IAS (Retd.)', 'Karnataka', 'website-assets/images/team/Rakesh-Singh.jpg', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(14, 'KERALA', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'kerala', 'Asha Thomas, IAS', 'Kerala', 'website-assets/images/team/asha-thomas-kerala-rera.jpg', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(15, 'MADHYA PRADESH', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'madhya_pradesh', 'Pushpendra Sharma, IAS', 'Madhya Pradesh', 'website-assets/images/team/Rakesh-Singh.jpg', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(16, 'MAHARASHTRA', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'maharashtra', 'Abhijit Bangar, IAS', 'Maharashtra', 'website-assets/images/team/abhijit-bangar-maharashtra-rera.jpg', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(17, 'ODISHA', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'odisha', 'Saswata Mishra, IAS', 'Odisha', 'website-assets/images/team/Saswata-Mishra.jpg', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(18, 'PUDUCHERRY', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'puducherry', 'Kumaran Puducherry, IAS', 'Puducherry', 'website-assets/images/team/Kumaran-Puducherry-RERA.png', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(19, 'PUNJAB', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'punjab', 'Rakesh Kumar Goyal, IAS', 'Punjab', 'website-assets/images/team/Rakesh-Kumar-Goyal.jpg', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(20, 'RAJASTHAN', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'rajasthan', 'Veenu Gupta, IAS', 'Rajasthan', 'website-assets/images/team/Veenu-Gupta-Rajasthan-RERA.png', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(21, 'TAMIL NADU', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'tamil_nadu', 'Shiv Das Meena, IAS', 'Tamil Nadu', 'website-assets/images/team/Shiv-Das-Meena.jpg', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(22, 'TELANGANA', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'telangana', 'Pushpendra Sharma, IAS', 'Telangana', 'website-assets/images/team/Rakesh-Singh.jpg', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(23, 'TRIPURA', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'tripura', 'Pushpendra Sharma, IAS', 'Tripura', 'website-assets/images/team/Rakesh-Singh.jpg', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(24, 'UTTAR PRADESH', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'uttar_pradesh', 'Sanjay Bhoosreddy, IAS', 'Uttar Pradesh', 'website-assets/images/team/Sanjay-Bhoosreddy-UP-RERA-Panchkula-RERA.jpg', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL),
+(25, 'WEST BENGAL', 'The All-India Forum of Real Estate Regulatory Authorities (AIFORERA) is a collaborative platform of Real Estate Regulatory Authorities (RERAs) across India, established to strengthen the implementation of the Real Estate (Regulation and Development) Act, 2016. AIFORERA works towards promoting transparency, accountability, efficiency, and uniformity in the regulation of the real estate sector. It serves as a national forum for cooperation, knowledge sharing, policy discussion, and coordination among State and Union Territory RERAs to ensure better protection of homebuyers and sustainable growth of the real estate industry', 'west_bengal', 'Jayanta Kumar Basu, IAS', 'West Bengal', 'website-assets/images/team/jayanta-kumar-basu-west-bengal-rera.jpg', '2026-06-24', 1, NULL, 1, '2026-06-24 07:16:46', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `title` varchar(50) NOT NULL,
+  `scope` enum('central','state','both') NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `title`, `scope`, `created_at`) VALUES
+(1, 'Web Master', 'central', '2026-05-29 16:24:35'),
+(2, 'Admin', 'central', '2026-05-29 16:24:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_permissions`
+--
+
+CREATE TABLE `role_permissions` (
+  `role_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `role_permissions`
+--
+
+INSERT INTO `role_permissions` (`role_id`, `permission_id`) VALUES
+(2, 1),
+(2, 2),
+(2, 3),
+(2, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `site_settings`
+--
+
+CREATE TABLE `site_settings` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `setting_key` varchar(50) NOT NULL,
+  `setting_value` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `site_settings`
+--
+
+INSERT INTO `site_settings` (`id`, `setting_key`, `setting_value`) VALUES
+(1, 'visitor_count', '47'),
+(2, 'last_updated', '2026-05-30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `units`
+--
+
+CREATE TABLE `units` (
+  `id` int(11) NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
+  `name` varchar(100) NOT NULL,
+  `level` enum('central','state','sub-division') DEFAULT 'state',
+  `status` enum('active','inactive') DEFAULT 'active',
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `units`
+--
+
+INSERT INTO `units` (`id`, `parent_id`, `name`, `level`, `status`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'AIFORERA (Central Unit)', 'central', 'active', '2026-05-29 07:03:32', '2026-05-29 07:03:32'),
+(2, 1, 'HARERAGGM', 'state', 'active', '2026-05-29 07:03:32', '2026-05-29 16:16:46'),
+(3, 1, 'Delhi RERA', 'state', 'active', '2026-05-29 07:03:32', '2026-05-29 07:03:32'),
+(4, 1, 'Karnataka RERA', 'state', 'active', '2026-05-29 07:03:32', '2026-05-29 07:03:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `uploaded_files`
+--
+
+CREATE TABLE `uploaded_files` (
+  `id` int(11) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `file_path` varchar(255) NOT NULL,
+  `file_thumbnail_path` varchar(255) DEFAULT NULL,
+  `original_name` varchar(255) NOT NULL,
+  `file_visibility` enum('public','private') DEFAULT 'private',
+  `unit_id` int(11) NOT NULL,
+  `uploaded_by` int(11) NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `uploaded_files`
+--
+
+INSERT INTO `uploaded_files` (`id`, `filename`, `file_path`, `file_thumbnail_path`, `original_name`, `file_visibility`, `unit_id`, `uploaded_by`, `created_at`) VALUES
+(1, 'Journal 1', 'public/uploads/1/2026/journal/journal-1.pdf', NULL, 'AIFORERA Act 2026', 'public', 1, 1, '2026-05-29 16:50:15'),
+(2, 'Journal 2', 'public/uploads/1/2026/journal/journal-2.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-05-29 16:51:00'),
+(4, 'Journal 3', 'public/uploads/1/2026/journal/journal-3.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-05-31 15:30:59'),
+(5, 'Journal 4', 'public/uploads/1/2026/journal/journal-4.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-05-31 15:31:40'),
+(6, 'Journal 5', 'public/uploads/1/2026/journal/journal-5.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-05-31 15:32:13'),
+(7, 'Annual Report 22-23', 'public/uploads/1/2026/annual-report/annual-report-22-23.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-05-31 15:33:39'),
+(8, 'Annual Report 23-24', 'public/uploads/1/2026/annual-report/annual-report-23-24.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-05-31 15:34:37'),
+(9, 'Annual Report 24-25', 'public/uploads/1/2026/annual-report/annual-report-24-25.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-05-31 15:35:12'),
+(10, 'Performance Overview', 'public/uploads/1/2026/annual-report/performance-overview-final.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-05-31 15:36:03'),
+(11, 'Best Practices', 'public/uploads/1/2026/public_notice/ACT_Regulation-Merged.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-05-31 15:38:31'),
+(13, 'Best Practices', 'public/uploads/1/2026/annual-report/annual-report-23-24.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-06-01 15:39:29'),
+(16, 'Best Practices', 'public/uploads/1/2026/annual-report/annual-report-23-24.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-06-01 15:39:48'),
+(17, 'Best Practices', 'public/uploads/1/2026/annual-report/annual-report-23-24.pdf', NULL, 'Order Act 2026', 'private', 1, 1, '2026-06-01 15:39:58'),
+(18, 'Best Practices', 'public/uploads/1/2026/annual-report/annual-report-23-24.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-06-01 15:40:10'),
+(19, 'Best Practices', 'public/uploads/1/2026/ACT_Regulation-Merged.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-06-01 15:40:18'),
+(20, 'Best Practices', 'public/uploads/1/2026/annual-report/annual-report-23-24.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-06-01 15:40:29'),
+(21, 'Best Practices', 'public/uploads/1/2026/annual-report/annual-report-23-24.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-06-01 15:40:37'),
+(22, 'Best Practices', 'public/uploads/1/2026/annual-report/annual-report-23-24.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-06-01 15:40:47'),
+(23, 'Best Practices', 'public/uploads/1/2026/annual-report/annual-report-23-24.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-06-01 15:40:55'),
+(24, 'Best Practices', 'public/uploads/1/2026/annual-report/annual-report-23-24.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-06-01 15:41:15'),
+(25, 'Best Practices', 'public/uploads/1/2026/annual-report/annual-report-23-24.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-06-01 15:41:21'),
+(26, 'Best Practices', 'public/uploads/1/2026/annual-report/annual-report-23-24.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-06-01 15:41:29'),
+(27, 'Best Practices', 'public/uploads/1/2026/annual-report/annual-report-23-24.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-06-01 15:41:36'),
+(28, 'Best Practices', 'public/uploads/1/2026/annual-report/annual-report-23-24.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-06-01 15:41:43'),
+(29, 'Best Practices', 'public/uploads/1/2026/annual-report/annual-report-23-24.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-06-01 15:41:50'),
+(30, 'Best Practices', 'public/uploads/1/2026/journal/journal-5.pdf', NULL, 'Order Act 2026', 'public', 1, 1, '2026-06-01 15:41:58'),
+(31, 'Andhra Pardesh RERA Rules', 'public/uploads/1/2026/act_rules/Andhra_Pardesh_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(32, 'Assam RERA Rules', 'public/uploads/1/2026/act_rules/Assam_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(33, 'Bihar RERA Rules', 'public/uploads/1/2026/act_rules/Bihar_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(34, 'Chattisgarh RERA Rules', 'public/uploads/1/2026/act_rules/Chattisgarh_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(35, 'Goa RERA Rules', 'public/uploads/1/2026/act_rules/Goa_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(36, 'Gujarat RERA Rules', 'public/uploads/1/2026/act_rules/Gujarat_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(37, 'Haryana Gurugram RERA Rules', 'public/uploads/1/2026/act_rules/Haryana_Gurugram_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(38, 'Himachal Pardesh RERA Rules', 'public/uploads/1/2026/act_rules/Himachal_Pardesh_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(39, 'Jharkand RERA Rules', 'public/uploads/1/2026/act_rules/Jharkand_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(40, 'Karnataka RERA Rules', 'public/uploads/1/2026/act_rules/Karnataka_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(41, 'Kerela RERA Rules', 'public/uploads/1/2026/act_rules/Kerela_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(42, 'Madhya Pradesh RERA Rules', 'public/uploads/1/2026/act_rules/Madhya_Pradesh_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(43, 'Maharashtra RERA Rules', 'public/uploads/1/2026/act_rules/Maharashtra_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(44, 'Manipur RERA Rules', 'public/uploads/1/2026/act_rules/Manipur_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(45, 'Meghalya RERA Rules', 'public/uploads/1/2026/act_rules/Meghalya_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(46, 'Mizoram RERA Rules', 'public/uploads/1/2026/act_rules/Mizoram_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(47, 'Odhisa RERA Rules', 'public/uploads/1/2026/act_rules/Odhisa_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(48, 'Punjab RERA Rules', 'public/uploads/1/2026/act_rules/Punjab_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(49, 'Rajasthan RERA Rules', 'public/uploads/1/2026/act_rules/Rajasthan_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(50, 'Sikkim RERA Rules', 'public/uploads/1/2026/act_rules/Sikkim_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(51, 'Tamil Nadu RERA Rules', 'public/uploads/1/2026/act_rules/Tamil_Nadu_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(52, 'Telangana RERA Rules', 'public/uploads/1/2026/act_rules/Telangana_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(53, 'Tripura RERA Rules', 'public/uploads/1/2026/act_rules/Tripura_real_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(54, 'Uttar Pradesh RERA Rules', 'public/uploads/1/2026/act_rules/Uttar_Pradesh_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(55, 'Uttarakhand Rera Rules', 'public/uploads/1/2026/act_rules/Uttarakhand_Rera_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(56, 'West Bengal RERA Rules', 'public/uploads/1/2026/act_rules/West_Bengal_RERA_Rules.pdf', NULL, 'ActRules 2026', 'public', 1, 1, '2026-06-11 12:47:14'),
+(57, 'Public Notice', 'public/uploads/1/2026/public_notice/ACT_Regulation-Merged.pdf', NULL, 'Public Notice 2026', 'public', 1, 1, '2026-06-22 17:17:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `primary_unit_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `status` enum('active','inactive','suspended') DEFAULT 'active',
+  `reset_token` varchar(64) DEFAULT NULL,
+  `reset_expires_at` datetime DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `designation` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `primary_unit_id`, `name`, `email`, `password`, `status`, `reset_token`, `reset_expires_at`, `created_at`, `updated_at`, `designation`) VALUES
+(1, 1, 'Harpal Sindhu', 'admin@aiforera.com', '$2y$10$6Uc.yPzkn4FtXfNXgLu7yeQPk./Pn0q6RVeIeATLRDBAr0dTFe22K', 'active', NULL, NULL, '2026-05-29 16:18:34', '2026-05-29 16:41:52', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_permissions`
+--
+
+CREATE TABLE `user_permissions` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `user_id` int(11) UNSIGNED NOT NULL,
+  `permission_id` int(11) UNSIGNED NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_permissions`
+--
+
+INSERT INTO `user_permissions` (`id`, `user_id`, `permission_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 5, NULL, NULL),
+(2, 1, 1, NULL, NULL),
+(3, 1, 2, NULL, NULL),
+(4, 1, 3, NULL, NULL),
+(5, 1, 4, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_role_assignments`
+--
+
+CREATE TABLE `user_role_assignments` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `unit_id` int(11) NOT NULL,
+  `assigned_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_role_assignments`
+--
+
+INSERT INTO `user_role_assignments` (`id`, `user_id`, `role_id`, `unit_id`, `assigned_at`) VALUES
+(1, 1, 2, 1, '2026-05-29 16:43:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_role_history_logs`
+--
+
+CREATE TABLE `user_role_history_logs` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `unit_id` int(11) NOT NULL,
+  `action` enum('assigned','transferred','removed/left') NOT NULL,
+  `changed_by` int(11) NOT NULL,
+  `notes` text DEFAULT NULL,
+  `action_date` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `activity_logs`
+--
+ALTER TABLE `activity_logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `unit_id` (`unit_id`);
+
+--
+-- Indexes for table `act_rules`
+--
+ALTER TABLE `act_rules`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `file_permissions`
+--
+ALTER TABLE `file_permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `file_id` (`file_id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `permission_key` (`permission_key`);
+
+--
+-- Indexes for table `publications`
+--
+ALTER TABLE `publications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `flag` (`flag`);
+
+--
+-- Indexes for table `report_an_issue`
+--
+ALTER TABLE `report_an_issue`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `resources_state_wise`
+--
+ALTER TABLE `resources_state_wise`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `resources_state_wise_stateID_foreign` (`stateID`),
+  ADD KEY `flag` (`flag`);
+
+--
+-- Indexes for table `resource_states`
+--
+ALTER TABLE `resource_states`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `role_permissions`
+--
+ALTER TABLE `role_permissions`
+  ADD PRIMARY KEY (`role_id`,`permission_id`),
+  ADD KEY `permission_id` (`permission_id`);
+
+--
+-- Indexes for table `site_settings`
+--
+ALTER TABLE `site_settings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `setting_key` (`setting_key`);
+
+--
+-- Indexes for table `units`
+--
+ALTER TABLE `units`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `parent_id` (`parent_id`);
+
+--
+-- Indexes for table `uploaded_files`
+--
+ALTER TABLE `uploaded_files`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `unit_id` (`unit_id`),
+  ADD KEY `uploaded_by` (`uploaded_by`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `primary_unit_id` (`primary_unit_id`);
+
+--
+-- Indexes for table `user_permissions`
+--
+ALTER TABLE `user_permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `permission_id` (`permission_id`);
+
+--
+-- Indexes for table `user_role_assignments`
+--
+ALTER TABLE `user_role_assignments`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_user_role_unit` (`user_id`,`role_id`,`unit_id`),
+  ADD KEY `role_id` (`role_id`),
+  ADD KEY `unit_id` (`unit_id`);
+
+--
+-- Indexes for table `user_role_history_logs`
+--
+ALTER TABLE `user_role_history_logs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `role_id` (`role_id`),
+  ADD KEY `unit_id` (`unit_id`),
+  ADD KEY `changed_by` (`changed_by`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `activity_logs`
+--
+ALTER TABLE `activity_logs`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- AUTO_INCREMENT for table `act_rules`
+--
+ALTER TABLE `act_rules`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `file_permissions`
+--
+ALTER TABLE `file_permissions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `publications`
+--
+ALTER TABLE `publications`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `report_an_issue`
+--
+ALTER TABLE `report_an_issue`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `resources_state_wise`
+--
+ALTER TABLE `resources_state_wise`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `resource_states`
+--
+ALTER TABLE `resource_states`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `site_settings`
+--
+ALTER TABLE `site_settings`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `units`
+--
+ALTER TABLE `units`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `uploaded_files`
+--
+ALTER TABLE `uploaded_files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `user_permissions`
+--
+ALTER TABLE `user_permissions`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `user_role_assignments`
+--
+ALTER TABLE `user_role_assignments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `user_role_history_logs`
+--
+ALTER TABLE `user_role_history_logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `activity_logs`
+--
+ALTER TABLE `activity_logs`
+  ADD CONSTRAINT `activity_logs_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `activity_logs_ibfk_2` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `file_permissions`
+--
+ALTER TABLE `file_permissions`
+  ADD CONSTRAINT `file_permissions_ibfk_1` FOREIGN KEY (`file_id`) REFERENCES `uploaded_files` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `resources_state_wise`
+--
+ALTER TABLE `resources_state_wise`
+  ADD CONSTRAINT `resources_state_wise_stateID_foreign` FOREIGN KEY (`stateID`) REFERENCES `resource_states` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `role_permissions`
+--
+ALTER TABLE `role_permissions`
+  ADD CONSTRAINT `role_permissions_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `role_permissions_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `units`
+--
+ALTER TABLE `units`
+  ADD CONSTRAINT `units_ibfk_1` FOREIGN KEY (`parent_id`) REFERENCES `units` (`id`);
+
+--
+-- Constraints for table `uploaded_files`
+--
+ALTER TABLE `uploaded_files`
+  ADD CONSTRAINT `uploaded_files_ibfk_1` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `uploaded_files_ibfk_2` FOREIGN KEY (`uploaded_by`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`primary_unit_id`) REFERENCES `units` (`id`);
+
+--
+-- Constraints for table `user_role_assignments`
+--
+ALTER TABLE `user_role_assignments`
+  ADD CONSTRAINT `user_role_assignments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_role_assignments_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_role_assignments_ibfk_3` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user_role_history_logs`
+--
+ALTER TABLE `user_role_history_logs`
+  ADD CONSTRAINT `user_role_history_logs_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_role_history_logs_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_role_history_logs_ibfk_3` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `user_role_history_logs_ibfk_4` FOREIGN KEY (`changed_by`) REFERENCES `users` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
